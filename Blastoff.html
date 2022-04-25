@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Blastoff</title>
+    <style>
+      body {
+        background-image: url(controlroom.jfif);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+      }
+    </style>
+    <body align="center">
+      <h1 style="background-color: rgb(255, 255, 255)">
+        Press the button to begin Blastoff
+      </h1>
+      <!--Generating a button with an onlick event that starts a interval timer to count down the function-->
+      <button
+        style="color: red; background: url(button.jfif)"
+        id="Launch"
+        onclick="MissionSound(); countdownInterval = setInterval(Countdown, 1000);"
+      >
+        Launch Button
+      </button>
+      <h2 style="color: red" id="Countdown"></h2>
+      <script>
+        //Set Blastoff count to 10. Activate function by clicking button and it just subtracts the count by
+        //one until it reaches zero then displays the blast off message.
+        // Plays audio when timer reaches zero
+        var count = 10;
+        function Countdown() {
+          document.getElementById("Countdown").innerHTML = count;
+
+          count = count - 1;
+          if (count == 0) {
+            document.getElementById("Countdown").innerHTML = "Blastoff!!!";
+            count = 10;
+            var audio = new Audio("Rocketsounds.wav");
+            audio.play();
+            clearInterval(countdownInterval);
+          }
+        }
+        function MissionSound() {
+          document.getElementById("Launch").disabled = true;
+          var missionSound = new Audio("Missionsound.flac");
+          missionSound.play();
+        }
+      </script>
+    </body>
+  </head>
+</html>
